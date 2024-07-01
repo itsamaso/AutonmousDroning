@@ -18,7 +18,7 @@ _Welcome to the Mini Drone Simulation project, this repository is dedicated to t
 <h2>Waypoint</h2>
 
 <p align="center">
-  <img src="path/to/your/image.jpg" alt="Alt text" />
+  <img src="WaypointSample.jpg" alt="Alt text" />
 </p>
 
 
