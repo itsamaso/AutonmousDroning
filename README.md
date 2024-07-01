@@ -34,11 +34,13 @@ ________________________________________________________________________________
 
 ___________________________________________________________________________________________________________________________________________________________
 
-- _**Autonomously** navigating the drone towards destinations that are given before taking off, respectively._
-- _Freely choose which destination to navigate to - among all existing destinations._
-- _Dynamically set an existing destination (by dragging) to a new one during the drone's flight and navigates to it._
+:heavy_check_mark: _**Autonomously** navigating the drone towards destinations that are given before taking off, respectively._
+
+:heavy_check_mark: _Freely choose which destination to navigate to - among all existing destinations._
+
+:heavy_check_mark: _Dynamically set an existing destination (by dragging) to a new one during the drone's flight and navigates to it._
   
-  _The algorithmic logic behind this feature is as follows:_
+- _The algorithmic logic behind this feature is as follows:_
 
   ```java
   onMarkerDragStart(@NonNull Marker marker)
@@ -58,7 +60,8 @@ ________________________________________________________________________________
     
     > **_Once there is no longer dragging, updates the current coordinate to be the new marker's coordinate after dragging and resumes mission._**
 
-  _Where all 3 methods are integrated in the following **`MoveMarkerInRealTime()`**:_
+
+- _Where all 3 methods are integrated in the following **`MoveMarkerInRealTime()`**:_
 
   ```java
   private void MoveMarkerInRealTime(){
