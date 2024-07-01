@@ -346,4 +346,6 @@ Essentially, **`MavicMiniMissionOperator.java`** is responsible to provide the a
 
 <br>
 
-_```To be continued...```_
+Enjoy watching our autonomous simulation here:
+
+_[Autonomous Mavic Mini Simulation](https://www.youtube.com/watch?v=-lzBZaGn6OM)_
