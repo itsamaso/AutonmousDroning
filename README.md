@@ -23,9 +23,9 @@ ________________________________________________________________________________
 
 ___________________________________________________________________________________________________________________________________________________________
 
-_Welcome to the Mini Drone Simulation project, this repository is dedicated to the development and simulation of an autonomous mini drone. The primary goal of this project is to create a comprehensive environment where the drone can navigate autonomously using a variety of control algorithms._
+Welcome to the Mini Drone Simulation project, this repository is dedicated to the development and simulation of an autonomous mini drone. The primary goal of this project is to create a comprehensive environment where the drone can navigate autonomously using a variety of control algorithms.
 
-_The project is applied on **`Mavic Mini 1`**, which originally does not support autonomous flights._
+> **_The project is applied on **`Mavic Mini 1`**, which originally does not support autonomous flights._**
 
 ___________________________________________________________________________________________________________________________________________________________
 
@@ -34,11 +34,17 @@ ________________________________________________________________________________
 
 ___________________________________________________________________________________________________________________________________________________________
 
+
 :heavy_check_mark: _**Autonomously** navigating the drone towards destinations that are given before taking off, respectively._
 
 :heavy_check_mark: _Freely choose which destination to navigate to - among all existing destinations._
 
 :heavy_check_mark: _Dynamically set an existing destination (by dragging) to a new one during the drone's flight and navigates to it._
+
+<div align="center">
+  <img src="images/RedPlane.png" style="display: inline-block;"/>
+  <img src="images/Marker.png" width="100" height="100" style="display: inline-block;"/>
+</div>
   
 - _The algorithmic logic behind this feature is as follows:_
 
@@ -58,7 +64,7 @@ ________________________________________________________________________________
   onMarkerDragEnd(@NonNull Marker marker)
   ```
     
-    > **_Once there is no longer dragging, updates the current coordinate to be the new marker's coordinate after dragging and resumes mission._**
+    > **_Once there is no longer dragging, updates the coordinate to be the new marker's coordinate after dragging and resumes mission._**
 
 
 - _Where all 3 methods are integrated in the following **`MoveMarkerInRealTime()`**:_
@@ -96,29 +102,30 @@ ________________________________________________________________________________
 
 ___________________________________________________________________________________________________________________________________________________________
 
-_Waypoint is an application that sets up the drone's flight before taking off, using various buttons where each one serves its own purpose.
-Essentially, the feature where you can dynamically set a new destination, is highly relied on the Waypoint._
+**Waypoint** is an application that sets up the drone's flight before taking off, using various buttons where each one serves its own purpose.
+Essentially, the feature where you can dynamically set a new destination, is highly relied on the Waypoint.
 
 <p align="center">
-  <img src="WaypointSample.jpg" width="360" height="800"/>
+  <img src="images/Waypoint.jpg" width="360" height="800"/>
 </p>
 
 How buttons work:
 
-- `LOCATE` _Zooms in towards the red airplane displayed in the app (which is the drone' current position)._
-- `ADD` _Adds a new destination by just clicking - in order to perform the click, the 'Add' button must be clicked_
-- `CLEAR` _Clears all currently displayed destinations._
-- `ADD POINT` _Adds a new destination by providing latitude, longtitude and altitude._
-- `CONFIG` _Configures/initializes the needed specifications for the flight, such as: speed, altitude, where-to-land... etc._
-- `UPLOAD` _Uploads all filled settings for the Waypoint's mission so it can be ready to take off._
-- `START` _Starts the mission, after uploading all needed settings._
-- `STOP` _Stops the mission._
+- **`LOCATE`** _Zooms in towards the red airplane displayed in the app (which is the drone' current position)._
+- **`ADD`** _Adds a new destination by just clicking - in order to perform the click, the 'Add' button must be clicked_
+- **`CLEAR`** _Clears all currently existing destinations._
+- **`ADD POINT`** _Adds a new destination by providing latitude, longtitude and altitude._
+- **`CONFIG`** _Configures/initializes the needed specifications for the flight, such as: speed, altitude, where-to-land... etc._
+- **`UPLOAD`** _Uploads all filled settings for the Waypoint's mission so it can be ready to take off._
+- **`START`** _Starts the mission, after uploading all needed settings._
+  
+    > **_Please note that only after starting your mission, you will be able to dynamically set a new destination._**
+  
+- **`STOP`** _Stops the mission._
 
-Please note, after starting your mission, during the mission/flight, you will be able to dynamically set a new destination.
+<br>
 
-Here is a video example of how Waypoint behaves: **LINK HERE**
-
-In order to review the class that is responsible for the Waypoint, please take a look at `MavicMiniWaypoint.java`
+> Visit **`MavicMiniWaypoint.java`** for implementation details.
 
 ___________________________________________________________________________________________________________________________________________________________
 
@@ -127,7 +134,7 @@ ________________________________________________________________________________
 
 ___________________________________________________________________________________________________________________________________________________________
 
-Essentially, **`MavicMiniMissionOperator.java`** is responsible to provide the autonomous logic by implementing the following methodology:
+Essentially, **`MavicMiniMissionOperator.java`** is responsible to provide the autonomous algorithm, in particular, its relation with the observer:
 
   ```java
   private Observer<LocationCoordinate3D> locationObserver = new Observer<LocationCoordinate3D>() {
@@ -239,7 +246,15 @@ Essentially, **`MavicMiniMissionOperator.java`** is responsible to provide the a
     };
   ```
 
-  The above code is pretty much the autonomous behavior being tackled in the project, where it can be executed in `executeMission()`.
+  The methodology explained:
+
+  - _The drone's current location is continuously monitored, and based on the difference between its current position and the target waypoint, the drone adjusts its speed and direction._
+  - _The algorithm calculates how far the drone is from the waypoint in terms of latitude and longitude. It then adjusts the drone's pitch (forward/backward movement) and roll (side-to-side movement) to minimize these differences._
+  - _When the drone is close enough to the target coordinates, it stops moving in that direction._
+  - _Once both latitude and longitude adjustments are complete, the drone moves to the next waypoint._
+  - _If all waypoints are visited, the mission stops, and the drone prepares to land._
+  
+  > Always executed in `executeMission()`.
 
 ___________________________________________________________________________________________________________________________________________________________
 
