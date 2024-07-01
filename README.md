@@ -9,13 +9,14 @@ ________________________________________________________________________________
 <p align="center">
   <a href="#introduction">Introduction</a> <br> 
   <a href="#features">Features</a> <br>
-  <a href="#brief-of-previous-tasks">Brief Of Previous Tasks</a> <br> 
   <a href="#waypoint">Waypoint</a> <br>
   <a href="#how-does-the-drone-fly-autonomously-using-virtual-stick">How Does The Drone Fly Autonomously Using Virtual Stick</a> <br>
   <a href="#prerequisites">Prerequisites</a> <br>
   <a href="#how-to-run">How To Run</a> <br>
   <a href="#closing">Closing</a> <br>
 </p>
+
+___________________________________________________________________________________________________________________________________________________________
 
 
 <h2>Introduction</h2>
@@ -24,22 +25,69 @@ ________________________________________________________________________________
 
 _Welcome to the Mini Drone Simulation project, this repository is dedicated to the development and simulation of an autonomous mini drone. The primary goal of this project is to create a comprehensive environment where the drone can navigate autonomously using a variety of control algorithms._
 
-_The drone is Mavic Mini, where initially lacks autonomous flight, therefore, our project manages to provide such a feature for such type of drones._
+_The project is applied on **`Mavic Mini 1`**, which originally does not support autonomous flights._
+
+___________________________________________________________________________________________________________________________________________________________
+
 
 <h2>Features</h2>
 
 ___________________________________________________________________________________________________________________________________________________________
 
-- _Navigating the drone into given destinations respectively._
-- _Dynamically change a given destination during the drone's flight._
-- _Freely choose which destination to navigate to - among the given destinations._
+- _**Autonomously** navigating the drone towards destinations that are given before taking off, respectively._
+- _Freely choose which destination to navigate to - among all existing destinations._
+- _Dynamically set an existing destination (by dragging) to a new one during the drone's flight and navigates to it._
+  
+  _The algorithmic logic behind this feature is as follows:_
 
-<h2>Brief Of Previous Tasks</h2>
+  ```java
+  onMarkerDragStart(@NonNull Marker marker)
+  ```
+  
+    > **_Once dragging starts, it pauses the drone's current mission._**
+    
+  ```java
+  onMarkerDrag(@NonNull Marker marker)
+  ```
+  
+    > **_Continuously updates the current coordinate as long as the location marker (in Waypoint) is being dragged._**
+    
+  ```java
+  onMarkerDragEnd(@NonNull Marker marker)
+  ```
+    
+    > **_Once there is no longer dragging, updates the current coordinate to be the new marker's coordinate after dragging and resumes mission._**
+
+  _Where all 3 methods are integrated in the following **`MoveMarkerInRealTime()`**:_
+
+  ```java
+  private void MoveMarkerInRealTime(){
+        Mymap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(@NonNull Marker marker) {
+                getWaypointMissionOperator().PauseMission();
+
+            }
+
+            @Override
+            public void onMarkerDrag(@NonNull Marker marker) {
+                LocationCoordinate2D newCoordinate=new LocationCoordinate2D(marker.getPosition().latitude,marker.getPosition().longitude);
+                getWaypointMissionOperator().updateWaypoint(newCoordinate);
+
+            }
+
+            @Override
+            public void onMarkerDragEnd(@NonNull Marker marker) {
+                LocationCoordinate2D newCoordinate = new LocationCoordinate2D(marker.getPosition().latitude, marker.getPosition().longitude);
+                getWaypointMissionOperator().updateWaypoint(newCoordinate);
+                getWaypointMissionOperator().resumeMission();
+
+            }
+        });
+    }
+  ```
 
 ___________________________________________________________________________________________________________________________________________________________
-
-- _Autonmously navigating a drone to its destination._
-- _Waypoint application to track drone & flight info in real-time._
 
 <h2>Waypoint</h2>
 
@@ -52,7 +100,7 @@ Essentially, the feature where you can dynamically set a new destination, is hig
   <img src="WaypointSample.jpg" width="360" height="800"/>
 </p>
 
-**Buttons & their purposes are as follows:**
+How buttons work:
 
 - `LOCATE` _Zooms in towards the red airplane displayed in the app (which is the drone' current position)._
 - `ADD` _Adds a new destination by just clicking - in order to perform the click, the 'Add' button must be clicked_
@@ -69,13 +117,16 @@ Here is a video example of how Waypoint behaves: **LINK HERE**
 
 In order to review the class that is responsible for the Waypoint, please take a look at `MavicMiniWaypoint.java`
 
+___________________________________________________________________________________________________________________________________________________________
+
+
 <h2>How Does The Drone Fly Autonomously Using Virtual Stick</h2>
 
 ___________________________________________________________________________________________________________________________________________________________
 
-Essentially, `MavicMiniMissionOperator.java` is responsible to provide the autonomous logic by implementing the following methodology:
+Essentially, **`MavicMiniMissionOperator.java`** is responsible to provide the autonomous logic by implementing the following methodology:
 
-  ```
+  ```java
   private Observer<LocationCoordinate3D> locationObserver = new Observer<LocationCoordinate3D>() {
         @Override
         public void onChanged(LocationCoordinate3D currentLocation) {
@@ -187,21 +238,30 @@ Essentially, `MavicMiniMissionOperator.java` is responsible to provide the auton
 
   The above code is pretty much the autonomous behavior being tackled in the project, where it can be executed in `executeMission()`.
 
+___________________________________________________________________________________________________________________________________________________________
+
+
 <h2>Prerequisites</h2>
 
 ___________________________________________________________________________________________________________________________________________________________
 
-- `DJI SDK MOBILE 4.16.4`
-- `Google Maps`.
+- **`DJI SDK MOBILE 4.16.4`**
+- **`Google Maps.`**
+
+___________________________________________________________________________________________________________________________________________________________
+
 
 <h2>How To Run</h2>
 
 ___________________________________________________________________________________________________________________________________________________________
 
 - _Open a new project in **Android Studio**._
-- _Perform the command line `git clone https://github.com/osamaghaliah/Mini-Drone-Simulation.git` in your terminal_
+- _Perform the command line **`git clone https://github.com/osamaghaliah/Mini-Drone-Simulation.git`** in your terminal_
 - _Connect your phone to the **Android Studio**._
 - _Run the code._
+
+___________________________________________________________________________________________________________________________________________________________
+
 
 <h2>Closing</h2>
 
