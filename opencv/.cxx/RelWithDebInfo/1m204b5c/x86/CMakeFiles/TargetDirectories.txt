@@ -1,0 +1,3 @@
+C:/Users/user/Desktop/Project_App_Drone-master2/opencv/.cxx/RelWithDebInfo/1m204b5c/x86/CMakeFiles/opencv_jni_shared.dir
+C:/Users/user/Desktop/Project_App_Drone-master2/opencv/.cxx/RelWithDebInfo/1m204b5c/x86/CMakeFiles/edit_cache.dir
+C:/Users/user/Desktop/Project_App_Drone-master2/opencv/.cxx/RelWithDebInfo/1m204b5c/x86/CMakeFiles/rebuild_cache.dir
