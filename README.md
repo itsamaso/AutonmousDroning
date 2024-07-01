@@ -2,20 +2,22 @@
 
 <h2>Introduction</h2>
 
-_Welcome to the Mini Drone Simulation project! This repository is dedicated to the development and simulation of an autonomous mini drone. The primary goal of this project is to create a comprehensive simulation environment where the drone can navigate autonomously using a variety of sensors and control algorithms._
+_Welcome to the Mini Drone Simulation project, this repository is dedicated to the development and simulation of an autonomous mini drone. The primary goal of this project is to create a comprehensive environment where the drone can navigate autonomously using a variety of control algorithms._
 
-<h2>Objectives</h2>
+<h2>Features</h2>
 
-- _To simulate an autonomous mini drone capable of navigating complex environments._
-- _To develop and test control algorithms for stable and efficient flight._
-- _To implement RTH (Return To Home) functionality._
-- _To create a flexible simulation environment for future enhancements and experiments._
+- _Navigating the drone into given destinations respectively._
+- _Dynamically change a given destination during the drone's flight._
+- _Freely choose which destination to navigate to - among the given destinations._
 
 <h2>Brief Of Previous Tasks</h2>
 
-- _Recognizing objects during a flight._
 - _Autonmously navigating a drone to its destination._
 - _Waypoint application to track drone & flight info in real-time._
+
+<h2>Waypoint</h2>
+
+
 
 <h2>Prerequisites</h2>
 
