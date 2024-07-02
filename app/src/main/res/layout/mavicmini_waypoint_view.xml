@@ -1,0 +1,151 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_locate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Locate"
+            style="@style/common_button"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            style="@style/common_button"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            style="@style/common_button"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btn_diloag_add_waypoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="add Point"
+            style="@style/common_button"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_config"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/common_button"
+            android:text="Config"
+            android:layout_weight="0.9"/>
+        <Button
+            android:id="@+id/btn_upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/common_button"
+            android:text="Upload"
+            android:layout_weight="0.9"/>
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/common_button"
+            android:text="Start"
+            android:layout_weight="0.9"/>
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/common_button"
+            android:text="Stop"
+            android:layout_weight="0.9"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />
+
+    <!-- Overlay Camera View on Map -->
+        <com.dji.sdk.sample.internal.view.BaseCameraView
+            android:id="@+id/cameraView"
+            android:layout_width="170dp"
+            android:layout_height="102dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="295dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp" />
+
+
+
+        <Button
+            android:id="@+id/btn_RecordVideo"
+            style="@style/common_button"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="359dp"
+            android:layout_weight="0.9"
+            android:background="@drawable/baseline_videocam_24"
+            android:textColor="@color/common_text_color" />
+
+        <Button
+            android:id="@+id/btn_choosePoint"
+            style="@style/common_button"
+            android:layout_width="51dp"
+            android:layout_height="68dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="330dp"
+            android:layout_weight="0.9"
+            android:background="@drawable/btn_draw_end"
+            android:textColor="@color/common_text_color" />
+    </RelativeLayout>
+    <!-- New LinearLayout for TextViews under the camera view -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="Live action"
+            android:textColor="@color/zxing_viewfinder_mask"
+            android:textSize="18dp"
+            android:textStyle="italic" />
+        <TextView
+            android:id="@+id/logTextView"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="vertical"
+            android:textColor="@color/zxing_viewfinder_laser"
+            android:textStyle="italic" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
