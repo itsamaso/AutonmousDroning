@@ -1,7 +1,0 @@
-[
-{
-  "directory": "C:/Users/user/Desktop/qr drone/Project_App_Drone-master2/opencv/.cxx/Debug/7fo8673w/armeabi-v7a",
-  "command": "C:\\Users\\user\\AppData\\Local\\Android\\Sdk\\ndk\\23.1.7779620\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi21 --sysroot=C:/Users/user/AppData/Local/Android/Sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security -fexceptions -frtti -stdlib=libc++ -g  -fno-limit-debug-info -fPIC -o CMakeFiles\\opencv_jni_shared.dir\\dummy.cpp.o -c \"C:\\Users\\user\\Desktop\\qr drone\\Project_App_Drone-master2\\opencv\\libcxx_helper\\dummy.cpp\"",
-  "file": "C:\\Users\\user\\Desktop\\qr drone\\Project_App_Drone-master2\\opencv\\libcxx_helper\\dummy.cpp"
-}
-]

@@ -1,1 +1,0 @@
-C:\Users\user\Desktop\qr drone\Project_App_Drone-master2\opencv\libcxx_helper\CMakeLists.txt
